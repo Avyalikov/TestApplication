@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Домашняя страница";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="../../Content/Site.css" />
+    <title>Тестовое задание</title>
+</head>
+<body>
+    <div>
+        <h3>Приложение к базе данных</h3>
+        @using (Html.BeginForm())
+        {
+            <p>
+                Найти по имени: @Html.TextBox("SearchString")
+                <input type="submit" value="Поиск" />
+            </p>
+        }
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Идентификатор", "Index", new { sortOrder = ViewBag.IdSort })
+                </th>
+                <th>
+                    @Html.ActionLink("Имя", "Index", new { sortOrder = ViewBag.NameSort })
+                </th>
+                <th>
+                    Описание
+                </th>
+                <th>
+                    @Html.ActionLink("Кол-во", "Index", new { sortOrder = ViewBag.CntSort })
+                </th>
+                <th>
+                    @Html.ActionLink("Результат", "Index", new { sortOrder = ViewBag.ScoreSort })
+                </th>
+                <th>
+                    @Html.ActionLink("Дата заказа", "Index", new { sortOrder = ViewBag.OdateSort })
+                </th>
+                <th>
+                    @Html.ActionLink("Дата биллинга", "Index", new { sortOrder = ViewBag.BdateSort })
+                </th>
+            </tr>
+            @foreach (var b in Model)
+            {
+                <tr>
+                    <td><p>@b.ViewId</p></td>
+                    <td><p>@b.ViewName</p></td>
+                    <td><p>@b.ViewDesc</p></td>
+                    <td><p>@b.ViewCnt</p></td>
+                    <td><p>@b.ViewScore</p></td>
+                    <td><p>@b.ViewOdate</p></td>
+                    <td><p>@b.ViewBdate</p></td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
